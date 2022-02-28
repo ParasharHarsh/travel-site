@@ -81,52 +81,7 @@
 		}
 	</script>
 
-	<script type="text/javascript" lang="javascript">
-	  // after screen-set login is completed
-	  function loginHandler(response) {
-            var profile = response['user']; 
-            $('a#userFirstname').text("Welcome " + profile.firstName + "!"); 
-            $('.logged-out').fadeOut(function () {
-                $('.logged-in').fadeIn(); });
-            }
-
-        function logoutHandler() {
-                $('a#userFirstname').text('');
-                $('.logged-in').fadeOut(function () {
-                    $('.logged-out').fadeIn(); })
-			};
-				
-
-		(function ($) {
-	    gigya.socialize.addEventHandlers({
-	        onLogin: loginHandler,
-					onLogout: logoutHandler
-	    });
-	    $(document).ready(function () {
-				$('#subscribe').click(function(e){
-	    		var email = $('#email').val();
-					$.ajax({
-			        "type": "POST",
-			        "url": "raas.php",
-			        "data": {"action": "subscribe", "email": email}
-			    }).done(function(ajaxRes) {
-						var ajaxJson = JSON.parse(ajaxRes);
-						if (ajaxJson.result == 'success') {
-							alert('Successfully subscribed!');
-						}
-					});
-  			});
-				gigya.accounts.getAccountInfo({callback:function (response) {
-				  if (response.errorCode == 0) {
-						$('#userFirstname').text("Welcome back " + response.profile.firstName + "!");
-						$('.logged-out').fadeOut(function () {
-								$('.logged-in').fadeIn();
-						});
-				  }
-				}});
-	    });
-		})(jQuery);
-	</script>
+	
 	<div id="fh5co-wrapper">
 	<div id="fh5co-page">
 	<div id="fh5co-header">
@@ -687,6 +642,52 @@
 	<script src="js/jquery.flexslider-min.js"></script>
 
 	<script src="js/custom.js"></script>
+	<script type="text/javascript" lang="javascript">
+	  // after screen-set login is completed
+	  function loginHandler(response) {
+            var profile = response['user']; 
+            $('a#userFirstname').text("Welcome " + profile.firstName + "!"); 
+            $('.logged-out').fadeOut(function () {
+                $('.logged-in').fadeIn(); });
+            }
+
+        function logoutHandler() {
+                $('a#userFirstname').text('');
+                $('.logged-in').fadeOut(function () {
+                    $('.logged-out').fadeIn(); })
+			};
+				
+
+		(function ($) {
+	    gigya.socialize.addEventHandlers({
+	        onLogin: loginHandler,
+					onLogout: logoutHandler
+	    });
+	    $(document).ready(function () {
+				$('#subscribe').click(function(e){
+	    		var email = $('#email').val();
+					$.ajax({
+			        "type": "POST",
+			        "url": "raas.php",
+			        "data": {"action": "subscribe", "email": email}
+			    }).done(function(ajaxRes) {
+						var ajaxJson = JSON.parse(ajaxRes);
+						if (ajaxJson.result == 'success') {
+							alert('Successfully subscribed!');
+						}
+					});
+  			});
+				gigya.accounts.getAccountInfo({callback:function (response) {
+				  if (response.errorCode == 0) {
+						$('#userFirstname').text("Welcome back " + response.profile.firstName + "!");
+						$('.logged-out').fadeOut(function () {
+								$('.logged-in').fadeIn();
+						});
+				  }
+				}});
+	    });
+		})(jQuery);
+	</script>
 
 </body>
 </html>
